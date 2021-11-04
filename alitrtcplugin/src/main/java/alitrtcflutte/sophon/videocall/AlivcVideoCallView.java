@@ -191,21 +191,13 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     }
 
     protected void initView() {
-        Log.e("音视频","1111111");
         LayoutInflater.from(getContext()).inflate(R.layout.aliyun_video_call_view, this, true);
-        Log.e("音视频","2222222");
         RTCBeaconTowerImpl.sharedInstance().setDelegate(this);
-        Log.e("音视频","33333333333");
         initTimeTextView();
-        Log.e("音视频","444444444");
         initAliRtcView();
-        Log.e("音视频","5555555555");
         initControlView();
-        Log.e("音视频","666666666");
         getDisplayMetrics();
-        Log.e("音视频","7777777");
         startPreview();
-        Log.e("音视频","8888888");
     }
 
     private void initTimeTextView() {
