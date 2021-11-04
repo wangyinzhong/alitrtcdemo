@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.SimpleTimeZone;
 import java.util.UUID;
 
+import alitrtcflutte.sophon.base.AliRtcApplication;
+
 /**
  * 本地鉴权信息提供类，正式上线时候建议使用服务器下发鉴权信息
  * 目前只支持int类型的uid
@@ -18,8 +20,8 @@ import java.util.UUID;
 public class MockAliRtcAuthInfo {
 
     public static AliRtcAuthInfo mockAuthInfo(String channelId, String userId){
-        String appId = "cm47z1tr"; //修改为自己的appid 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
-        String appKey = "d461cf0107397bf6af8cb11089857cdb"; //修改为自己的appkey 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
+        String appId = SharedPreferenceUtils.getAppId(AliRtcApplication.getInstance()); //修改为自己的appid 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
+        String appKey = SharedPreferenceUtils.getAppKey(AliRtcApplication.getInstance()); //修改为自己的appkey 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
         String nonce = String.format("AK-%s", UUID.randomUUID().toString());
         Calendar nowTime = Calendar.getInstance();
         nowTime.add(Calendar.HOUR_OF_DAY, 48);
