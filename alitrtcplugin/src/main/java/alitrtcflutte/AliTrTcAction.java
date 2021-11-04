@@ -41,7 +41,7 @@ public  class AliTrTcAction {
      */
    public static void showAuthInfo(String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
         Intent intent = new Intent(AliRtcApplication.getInstance(), VideoCallActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle b = new Bundle();
         //用户名
         b.putString("username", userName);

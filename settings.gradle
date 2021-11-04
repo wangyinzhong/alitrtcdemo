@@ -1,2 +1,2 @@
 include ':app', ':alitrtcplugin'
-rootProject.name='PictureSelector'
+rootProject.name='alitrtcdemo'
