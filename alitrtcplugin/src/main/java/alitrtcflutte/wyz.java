@@ -1,4 +1,0 @@
-package alitrtcflutte;
-
-class wyz {
-}
