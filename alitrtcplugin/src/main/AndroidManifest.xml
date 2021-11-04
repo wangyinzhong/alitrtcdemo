@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="demo.wyz.alitrtcflutte">
+    package="alitrtcflutte.sophon">
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
@@ -37,5 +37,6 @@
             android:theme="@style/AppBaseTheme">
 
         </activity>
+        <activity android:name="alitrtcflutte.sophon.base.AbcWyz"/>
     </application>
 </manifest>

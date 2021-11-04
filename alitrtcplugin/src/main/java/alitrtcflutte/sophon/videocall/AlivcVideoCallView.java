@@ -39,6 +39,7 @@ import org.webrtc.sdk.SophonSurfaceView;
 
 import java.lang.ref.WeakReference;
 
+import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.ChartUserBean;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.rtc.RTCBeaconTowerCallback;
@@ -50,7 +51,6 @@ import alitrtcflutte.sophon.videocall.adapter.BaseRecyclerViewAdapter;
 import alitrtcflutte.sophon.videocall.adapter.ChartUserAdapter;
 import alitrtcflutte.sophon.videocall.view.AlivcControlView;
 import alitrtcflutte.sophon.videocall.view.AlivcTimeTextView;
-import demo.wyz.alitrtcflutte.R;
 
 
 /**

@@ -19,7 +19,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import demo.wyz.alitrtcflutte.R;
+import alitrtcflutte.sophon.R;
 
 
 public class CircleImageView extends AppCompatImageView {

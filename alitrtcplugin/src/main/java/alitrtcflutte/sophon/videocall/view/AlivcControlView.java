@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import demo.wyz.alitrtcflutte.R;
+import alitrtcflutte.sophon.R;
 
 
 /**

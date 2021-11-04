@@ -5,9 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.utils.StringUtil;
-import demo.wyz.alitrtcflutte.R;
 
 
 public class VideoCallActivity extends AppCompatActivity implements View.OnClickListener {

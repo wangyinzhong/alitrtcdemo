@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-import demo.wyz.alitrtcflutte.R;
+import alitrtcflutte.sophon.R;
 
 
 /**

@@ -13,12 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.bean.RTCMeetingInfo;
 import alitrtcflutte.sophon.network.RequestRTCAuthInfo;
 import alitrtcflutte.sophon.utils.NetWatchdog;
 import alitrtcflutte.sophon.videocall.VideoCallActivity;
-import demo.wyz.alitrtcflutte.R;
 
 
 /**

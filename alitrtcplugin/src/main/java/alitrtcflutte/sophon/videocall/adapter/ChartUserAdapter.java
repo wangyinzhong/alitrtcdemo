@@ -19,8 +19,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.ChartUserBean;
-import demo.wyz.alitrtcflutte.R;
 
 
 public class ChartUserAdapter extends BaseRecyclerViewAdapter<ChartUserAdapter.ChartViewHolder> {
