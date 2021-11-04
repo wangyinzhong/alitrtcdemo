@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.alivc.rtc.AliRtcAuthInfo;
 
+import alitrtcflutte.sophon.base.AbcWyz;
 import alitrtcflutte.sophon.base.AliRtcApplication;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.utils.MockAliRtcAuthInfo;
@@ -40,7 +41,9 @@ public  class AliTrTcAction {
      *  @author wyz
      */
    public static void showAuthInfo(String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
-        Intent intent = new Intent(AliRtcApplication.getInstance(), VideoCallActivity.class);
+
+//        Intent intent = new Intent(AliRtcApplication.getInstance(), VideoCallActivity.class);
+       Intent intent = new Intent(AliRtcApplication.getInstance(), AbcWyz.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle b = new Bundle();
         //用户名

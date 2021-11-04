@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import alitrtcflutte.sophon.R;
 
 
-class AbcWyz extends Activity {
+public class AbcWyz extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
