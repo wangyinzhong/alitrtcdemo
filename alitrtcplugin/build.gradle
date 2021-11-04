@@ -37,6 +37,6 @@ dependencies {
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["externalGlide"]
-    api 'com.aliyun.rtc:AliRTC-Full:1.17.38.2101092'
+    implementation 'com.aliyun.rtc:AliRTC-Full:1.17.38.2101092'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }
