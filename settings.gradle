@@ -1,2 +1,2 @@
-include ':app', ':alitrtcplugin'
+include ':alitrtcplugin'
 rootProject.name='alitrtcdemo'

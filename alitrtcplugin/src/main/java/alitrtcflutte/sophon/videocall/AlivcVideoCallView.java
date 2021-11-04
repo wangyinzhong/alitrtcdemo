@@ -56,7 +56,7 @@ import demo.wyz.alitrtcflutte.R;
 /**
  * 视频通话业务逻辑核心类，通过阿里云音视频通信SDK实现1v1和多人通话
  */
-public class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCallback {
+public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCallback {
     private static final String TAG = "AlivcVideoCallView";
     private static final int HANDLER_HIDE_TASK = 0x0001;
     /**
