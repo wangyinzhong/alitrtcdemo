@@ -10,12 +10,12 @@ import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.utils.MockAliRtcAuthInfo;
 import alitrtcflutte.sophon.videocall.VideoCallActivity;
 
-public class AliTrTcAction {
+public  class AliTrTcAction {
     /**
      * 本地生成token
      * @author wyz
      */
-    private void startVideoCallActivity(String channelId, String userName) {
+    public static void startVideoCallActivity(String channelId, String userName) {
 
         try {
             AliRtcAuthInfo  authInfo = MockAliRtcAuthInfo.mockAuthInfo(channelId, MockAliRtcAuthInfo.createUserId(channelId, userName));
@@ -39,7 +39,7 @@ public class AliTrTcAction {
      * 网络获取加入频道信息
      *  @author wyz
      */
-   public void showAuthInfo(String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
+   public static void showAuthInfo(String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
         Intent intent = new Intent(AliRtcApplication.getInstance(), VideoCallActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle b = new Bundle();
