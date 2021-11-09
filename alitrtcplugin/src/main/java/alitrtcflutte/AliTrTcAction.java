@@ -1,23 +1,21 @@
 package alitrtcflutte;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.alivc.rtc.AliRtcAuthInfo;
-
-import alitrtcflutte.sophon.base.AbcWyz;
-import alitrtcflutte.sophon.base.AliRtcApplication;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.utils.MockAliRtcAuthInfo;
 import alitrtcflutte.sophon.videocall.VideoCallActivity;
 
 public  class AliTrTcAction {
+    public static Context myContext;
     /**
      * 本地生成token
      * @author wyz
      */
-    public static void startVideoCallActivity(String channelId, String userName) {
-
+    public static void startVideoCallActivity(Context context,String channelId, String userName) {
+        myContext=context;
         try {
             AliRtcAuthInfo  authInfo = MockAliRtcAuthInfo.mockAuthInfo(channelId, MockAliRtcAuthInfo.createUserId(channelId, userName));
             RTCAuthInfo   info = new RTCAuthInfo();
@@ -30,7 +28,7 @@ public  class AliTrTcAction {
             info.data.token = authInfo.mToken;
             info.data.gslb = authInfo.mGslb;
             info.data.ConferenceId = authInfo.mConferenceId;
-            showAuthInfo(channelId, info, userName);
+            showAuthInfo(context,channelId, info, userName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,9 +38,9 @@ public  class AliTrTcAction {
      * 网络获取加入频道信息
      *  @author wyz
      */
-   public static void showAuthInfo(String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
+   public static void showAuthInfo(Context context,String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
 
-        Intent intent = new Intent(AliRtcApplication.getInstance(), VideoCallActivity.class);
+        Intent intent = new Intent(context, VideoCallActivity.class);
       // Intent intent = new Intent(AliRtcApplication.getInstance(), AbcWyz.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle b = new Bundle();
@@ -53,6 +51,6 @@ public  class AliTrTcAction {
         //音频播放
         b.putSerializable("rtcAuthInfo", rtcAuthInfo);
         intent.putExtras(b);
-        AliRtcApplication.getInstance().startActivity(intent);
+        context.startActivity(intent);
     }
 }

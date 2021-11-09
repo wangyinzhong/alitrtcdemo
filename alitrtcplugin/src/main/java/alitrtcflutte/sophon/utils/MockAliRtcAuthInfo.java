@@ -10,8 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.SimpleTimeZone;
 import java.util.UUID;
-
-import alitrtcflutte.sophon.base.AliRtcApplication;
+import alitrtcflutte.AliTrTcAction;
 
 /**
  * 本地鉴权信息提供类，正式上线时候建议使用服务器下发鉴权信息
@@ -20,8 +19,8 @@ import alitrtcflutte.sophon.base.AliRtcApplication;
 public class MockAliRtcAuthInfo {
 
     public static AliRtcAuthInfo mockAuthInfo(String channelId, String userId){
-        String appId = SharedPreferenceUtils.getAppId(AliRtcApplication.getInstance()); //修改为自己的appid 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
-        String appKey = SharedPreferenceUtils.getAppKey(AliRtcApplication.getInstance()); //修改为自己的appkey 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
+        String appId = SharedPreferenceUtils.getAppId(AliTrTcAction.myContext); //修改为自己的appid 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
+        String appKey = SharedPreferenceUtils.getAppKey(AliTrTcAction.myContext); //修改为自己的appkey 该方案仅为开发测试使用，正式上线需要使用服务端的AppServer
         String nonce = String.format("AK-%s", UUID.randomUUID().toString());
         Calendar nowTime = Calendar.getInstance();
         nowTime.add(Calendar.HOUR_OF_DAY, 48);
