@@ -39,9 +39,11 @@ import org.webrtc.sdk.SophonSurfaceView;
 
 import java.lang.ref.WeakReference;
 
+import alitrtcflutte.AliTrTcAction;
 import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.ChartUserBean;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
+import alitrtcflutte.sophon.rtc.RTCActionCallInfo;
 import alitrtcflutte.sophon.rtc.RTCBeaconTowerCallback;
 import alitrtcflutte.sophon.rtc.RTCBeaconTowerImpl;
 import alitrtcflutte.sophon.utils.DensityUtil;
@@ -143,7 +145,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     private DisplayMetrics displayMetrics;
 
     private VideoCallHandler mHandler = new VideoCallHandler(this);
-
+    private RTCActionCallInfo aliTrTcAction;
 
     /**
      * 执行定时任务，检测VideoCallView 是否隐藏，每5秒后自动隐藏
@@ -193,6 +195,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     protected void initView() {
         LayoutInflater.from(getContext()).inflate(R.layout.aliyun_video_call_view, this, true);
         RTCBeaconTowerImpl.sharedInstance().setDelegate(this);
+        aliTrTcAction=new RTCActionCallInfo(new AliTrTcAction());
         initTimeTextView();
         initAliRtcView();
         initControlView();
@@ -316,6 +319,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
                 if (alivcVideoCallNotifyListner != null) {
                     alivcVideoCallNotifyListner.onLeaveChannel();
                 }
+                aliTrTcAction.callWithdraw();
             }
 
             /**

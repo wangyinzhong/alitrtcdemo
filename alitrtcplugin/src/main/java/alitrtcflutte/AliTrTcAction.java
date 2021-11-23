@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.alivc.rtc.AliRtcAuthInfo;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
+import alitrtcflutte.sophon.listener.ActionControlPanelListener;
 import alitrtcflutte.sophon.utils.MockAliRtcAuthInfo;
 import alitrtcflutte.sophon.videocall.VideoCallActivity;
 
-public  class AliTrTcAction {
+public  class AliTrTcAction implements ActionControlPanelListener {
     public static Context myContext;
     /**
      * 本地生成token
@@ -52,5 +53,14 @@ public  class AliTrTcAction {
         b.putSerializable("rtcAuthInfo", rtcAuthInfo);
         intent.putExtras(b);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onWithdraw() {
+        getTRCCall(1);
+    }
+
+    public static int getTRCCall(int tag){
+        return  tag;
     }
 }
