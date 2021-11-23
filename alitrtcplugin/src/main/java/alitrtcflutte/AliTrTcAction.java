@@ -11,6 +11,7 @@ import alitrtcflutte.sophon.videocall.VideoCallActivity;
 
 public  class AliTrTcAction implements ActionControlPanelListener {
     public static Context myContext;
+    public static int tag;
     /**
      * 本地生成token
      * @author wyz
@@ -57,10 +58,11 @@ public  class AliTrTcAction implements ActionControlPanelListener {
 
     @Override
     public void onWithdraw() {
-        getTRCCall(1);
+       tag=1;
+        getTRCCall();
     }
 
-    public static int getTRCCall(int tag){
+    public static int getTRCCall(){
         return  tag;
     }
 }
