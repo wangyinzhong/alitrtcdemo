@@ -3,29 +3,30 @@
     android:id="@+id/rl_video_call_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/alivc_common_bg_black">
+    android:background="#554033"
+    >
 
+<!--    android:background="@color/alivc_common_bg_black"-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/big_surface_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"/>
+            android:layout_marginBottom="220dp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/alivc_video_call_remote_contentview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginBottom="@dimen/margin_6"
             android:layout_marginLeft="@dimen/margin_6"
             android:layout_marginTop="@dimen/margin_6"
+            android:layout_marginBottom="@dimen/margin_6"
             android:overScrollMode="never" />
-
     </FrameLayout>
 
 
@@ -34,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_40" />
+        android:layout_marginBottom="@dimen/dimen_15" />
 
 
     <alitrtcflutte.sophon.videocall.view.AlivcTimeTextView

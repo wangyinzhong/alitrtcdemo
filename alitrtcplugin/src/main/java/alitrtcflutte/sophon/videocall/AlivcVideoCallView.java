@@ -6,7 +6,6 @@ import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackBoth;
 import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackCamera;
 import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackNo;
 import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackScreen;
-
 import static alitrtcflutte.sophon.utils.ThreadUtils.runOnUiThread;
 
 import android.animation.Animator;
@@ -145,7 +144,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     private DisplayMetrics displayMetrics;
 
     private VideoCallHandler mHandler = new VideoCallHandler(this);
-
+    private RTCActionCallInfo aliTrTcAction;
     /**
      * 执行定时任务，检测VideoCallView 是否隐藏，每5秒后自动隐藏
      */
@@ -192,9 +191,12 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     }
 
     protected void initView() {
+//        Resources resources = this.getResources();
+//        DisplayMetrics dm = resources.getDisplayMetrics();
+//         width = dm.widthPixels;
         LayoutInflater.from(getContext()).inflate(R.layout.aliyun_video_call_view, this, true);
         RTCBeaconTowerImpl.sharedInstance().setDelegate(this);
-
+        aliTrTcAction=new RTCActionCallInfo(new AliTrTcAction());
         initTimeTextView();
         initAliRtcView();
         initControlView();
@@ -216,6 +218,12 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
         mBigVideoViewContainer = findViewById(R.id.big_surface_container);
         mVideoLiveRecylerView = findViewById(R.id.alivc_video_call_remote_contentview);
         mUserVideoListAdapter = new ChartUserAdapter();
+//        ViewGroup.LayoutParams  vi=   mBigVideoViewContainer.getLayoutParams();
+//        Log.e("宽度",width+"");
+//        vi.width=width;
+//        mBigVideoViewContainer.setLayoutParams(vi);
+
+
         initRecyclerView();
 
         mUserVideoListAdapter.setOnItemClickListener(new ChartUserAdapter.OnItemClickListener() {
@@ -258,14 +266,14 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
         alivcControlView.setOnControlPanelListener(new AlivcControlView.OnControlPanelListener() {
             @Override
             public void onCameraPreview(boolean bool) {
-                if (bool) {
-                    RTCBeaconTowerImpl.sharedInstance().configLocalCameraPublish(false);
-                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mutelocal_camera_off));
-                } else {
-                    RTCBeaconTowerImpl.sharedInstance().configLocalCameraPublish(true);
-                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mutelocal_camera_on));
-
-                }
+//                if (bool) {
+//                    RTCBeaconTowerImpl.sharedInstance().configLocalCameraPublish(false);
+//                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mutelocal_camera_off));
+//                } else {
+//                    RTCBeaconTowerImpl.sharedInstance().configLocalCameraPublish(true);
+//                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mutelocal_camera_on));
+//
+//                }
             }
 
             /**
@@ -274,12 +282,12 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
             @Override
             public void onMute(boolean bool) {
                 RTCBeaconTowerImpl.sharedInstance().muteLocalMic(bool);
-                if (bool) {
-                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mute_on));
-                } else {
-                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mute_off));
-
-                }
+//                if (bool) {
+//                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mute_on));
+//                } else {
+//                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mute_off));
+//
+//                }
 
             }
 
@@ -289,12 +297,12 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
             @Override
             public void onHandsFree(boolean bool) {
                 RTCBeaconTowerImpl.sharedInstance().enableSpeakerphone(bool);
-                if (bool) {
-                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_handsfree_on));
-                } else {
-                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_handsfree_off));
-
-                }
+//                if (bool) {
+//                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_handsfree_on));
+//                } else {
+//                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_handsfree_off));
+//
+//                }
 
             }
 
@@ -305,7 +313,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
             public void onSwitchCamera() {
                 Log.e(TAG, "onSwitchCamera");
                 RTCBeaconTowerImpl.sharedInstance().switchCamera();
-                ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_switch_camera));
+//                ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_switch_camera));
             }
 
             /**
@@ -318,6 +326,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
                 if (alivcVideoCallNotifyListner != null) {
                     alivcVideoCallNotifyListner.onLeaveChannel();
                 }
+                aliTrTcAction.callWithdraw();
             }
 
             /**
@@ -651,36 +660,36 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
      * 隐藏AlivcControlView 的动画
      */
     private void hideAlivcControlView() {
-        if (alivcControlView != null && alivcControlView.getLayoutParams() != null &&
-                IMAGE_BUTTON_IS_SHOW_FLAG && CAN_EXECUTE_HIDE_ANIMATOR) {
-            final MarginLayoutParams mMarginLayoutParams = (MarginLayoutParams) alivcControlView.getLayoutParams();
-            hideValueAnimator = ValueAnimator.ofFloat(DensityUtil.dip2px(AlivcVideoCallView.this.getContext(),
-                    getResources().getDimension(R.dimen.margin_3)), -mAlivcControlViewHeight);
-            hideValueAnimator.setDuration(500);
-            hideValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    float currentMargin = (float) animation.getAnimatedValue();
-                    mMarginLayoutParams.bottomMargin = (int) currentMargin;
-                    alivcControlView.setLayoutParams(mMarginLayoutParams);
-                }
-            });
-            hideValueAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    super.onAnimationStart(animation);
-                    CAN_EXECUTE_SHOW_ANIMATOR = false;
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    CAN_EXECUTE_SHOW_ANIMATOR = true;
-                    IMAGE_BUTTON_IS_SHOW_FLAG = false;
-                }
-            });
-            hideValueAnimator.start();
-        }
+//        if (alivcControlView != null && alivcControlView.getLayoutParams() != null &&
+//                IMAGE_BUTTON_IS_SHOW_FLAG && CAN_EXECUTE_HIDE_ANIMATOR) {
+//            final MarginLayoutParams mMarginLayoutParams = (MarginLayoutParams) alivcControlView.getLayoutParams();
+//            hideValueAnimator = ValueAnimator.ofFloat(DensityUtil.dip2px(AlivcVideoCallView.this.getContext(),
+//                    getResources().getDimension(R.dimen.margin_3)), -mAlivcControlViewHeight);
+//            hideValueAnimator.setDuration(500);
+//            hideValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                @Override
+//                public void onAnimationUpdate(ValueAnimator animation) {
+//                    float currentMargin = (float) animation.getAnimatedValue();
+//                    mMarginLayoutParams.bottomMargin = (int) currentMargin;
+//                    alivcControlView.setLayoutParams(mMarginLayoutParams);
+//                }
+//            });
+//            hideValueAnimator.addListener(new AnimatorListenerAdapter() {
+//                @Override
+//                public void onAnimationStart(Animator animation) {
+//                    super.onAnimationStart(animation);
+//                    CAN_EXECUTE_SHOW_ANIMATOR = false;
+//                }
+//
+//                @Override
+//                public void onAnimationEnd(Animator animation) {
+//                    super.onAnimationEnd(animation);
+//                    CAN_EXECUTE_SHOW_ANIMATOR = true;
+//                    IMAGE_BUTTON_IS_SHOW_FLAG = false;
+//                }
+//            });
+//            hideValueAnimator.start();
+//        }
     }
 
     /**
@@ -741,7 +750,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     @Override
     public void onJoinChannelResult(int result) {
         Log.d(TAG, "onJoinChatResult " + result);
-        ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_waiting));
+//        ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_waiting));
         mLocalChartUserBean = new ChartUserBean();
         mLocalChartUserBean.mUserId = mRTCAuthInfo.data.userid;
         mLocalChartUserBean.mIsLocal = true;
