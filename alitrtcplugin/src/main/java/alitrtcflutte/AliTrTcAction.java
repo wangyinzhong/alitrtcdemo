@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.alivc.rtc.AliRtcAuthInfo;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.listener.ActionControlPanelListener;
 import alitrtcflutte.sophon.utils.MockAliRtcAuthInfo;
@@ -15,13 +13,11 @@ import alitrtcflutte.sophon.videocall.VideoCallActivity;
 
 public  class AliTrTcAction implements ActionControlPanelListener {
     public static Context myContext;
-    private static int TRTCMode=0;
     /**
      * 本地生成token
      * @author wyz
      */
     public static void startVideoCallActivity(Context context,String channelId, String userName) {
-
         myContext=context;
         try {
             AliRtcAuthInfo  authInfo = MockAliRtcAuthInfo.mockAuthInfo(channelId, MockAliRtcAuthInfo.createUserId(channelId, userName));
@@ -46,9 +42,7 @@ public  class AliTrTcAction implements ActionControlPanelListener {
      *  @author wyz
      */
    public static void showAuthInfo(Context context,String channelId, RTCAuthInfo rtcAuthInfo, String userName) {
-
         Intent intent = new Intent(context, VideoCallActivity.class);
-      // Intent intent = new Intent(AliRtcApplication.getInstance(), AbcWyz.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle b = new Bundle();
         //用户名
@@ -64,28 +58,10 @@ public  class AliTrTcAction implements ActionControlPanelListener {
 
     @Override
     public void onWithdraw() {
-        //TRTCMode=1;
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("message", "android 主动调用 flutter test 方法");
-        resultMap.put("code", 200);
+        resultMap.put("code", 1001);
         Intent lIntent = new Intent("android.to.flutter");
         myContext.sendBroadcast(lIntent);
     }
-
-    /**
-     * 对外事件
-     * @return  code码
-     */
-    public static int getTRTCMode(){
-       return TRTCMode;
-    }
-
-    /**
-     * 重置
-     */
-    public static void onTRTCReset(){
-        TRTCMode=0;
-    }
-
 
 }
