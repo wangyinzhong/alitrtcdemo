@@ -6,8 +6,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import alitrtcflutte.AliTrTcAction;
 import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
+import alitrtcflutte.sophon.rtc.RTCActionCallInfo;
 import alitrtcflutte.sophon.utils.StringUtil;
 
 
@@ -19,6 +21,7 @@ public class VideoCallActivity extends AppCompatActivity implements View.OnClick
     private RTCAuthInfo mRtcAuthInfo;
     private TextView mTitleTv;
     private TextView mCopyTv;
+    private RTCActionCallInfo aliTrTcAction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class VideoCallActivity extends AppCompatActivity implements View.OnClick
         mTitleTv.setText(String.format(getResources().getString(R.string.str_channel_code),channel));
 
         alivcVideoCallView.auth(displayName, channel, mRtcAuthInfo);
+        aliTrTcAction=new RTCActionCallInfo(new AliTrTcAction());
     }
 
     private void getIntentData() {
@@ -53,6 +57,7 @@ public class VideoCallActivity extends AppCompatActivity implements View.OnClick
         if (alivcVideoCallView != null) {
             alivcVideoCallView.leave();
         }
+        aliTrTcAction.callWithdraw();
         super.onDestroy();
     }
 

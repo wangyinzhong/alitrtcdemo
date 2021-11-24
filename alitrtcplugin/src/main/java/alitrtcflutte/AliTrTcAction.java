@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.alivc.rtc.AliRtcAuthInfo;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.listener.ActionControlPanelListener;
 import alitrtcflutte.sophon.utils.MockAliRtcAuthInfo;
@@ -15,11 +11,13 @@ import alitrtcflutte.sophon.videocall.VideoCallActivity;
 
 public  class AliTrTcAction implements ActionControlPanelListener {
     public static Context myContext;
+    private static int TRTCMode=0;
     /**
      * 本地生成token
      * @author wyz
      */
     public static void startVideoCallActivity(Context context,String channelId, String userName) {
+
         myContext=context;
         try {
             AliRtcAuthInfo  authInfo = MockAliRtcAuthInfo.mockAuthInfo(channelId, MockAliRtcAuthInfo.createUserId(channelId, userName));
@@ -59,13 +57,20 @@ public  class AliTrTcAction implements ActionControlPanelListener {
         context.startActivity(intent);
     }
 
+    
     @Override
     public void onWithdraw() {
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("message", "android 主动调用 flutter test 方法");
-        resultMap.put("code", 200);
-        Intent lIntent = new Intent("android.to.flutter");
-        myContext.sendBroadcast(lIntent);
+        TRTCMode=1;
+
     }
+
+    /**
+     * 对外状态
+     * @return
+     */
+    public static int getTRTCMode(){
+       return TRTCMode;
+    }
+
 
 }

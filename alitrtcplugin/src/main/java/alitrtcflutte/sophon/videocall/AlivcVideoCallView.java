@@ -145,7 +145,6 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     private DisplayMetrics displayMetrics;
 
     private VideoCallHandler mHandler = new VideoCallHandler(this);
-    private RTCActionCallInfo aliTrTcAction;
 
     /**
      * 执行定时任务，检测VideoCallView 是否隐藏，每5秒后自动隐藏
@@ -195,7 +194,7 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
     protected void initView() {
         LayoutInflater.from(getContext()).inflate(R.layout.aliyun_video_call_view, this, true);
         RTCBeaconTowerImpl.sharedInstance().setDelegate(this);
-        aliTrTcAction=new RTCActionCallInfo(new AliTrTcAction());
+
         initTimeTextView();
         initAliRtcView();
         initControlView();
@@ -319,7 +318,6 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
                 if (alivcVideoCallNotifyListner != null) {
                     alivcVideoCallNotifyListner.onLeaveChannel();
                 }
-                aliTrTcAction.callWithdraw();
             }
 
             /**
