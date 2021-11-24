@@ -57,7 +57,7 @@ public  class AliTrTcAction implements ActionControlPanelListener {
         context.startActivity(intent);
     }
 
-    
+
     @Override
     public void onWithdraw() {
         TRTCMode=1;
@@ -65,11 +65,18 @@ public  class AliTrTcAction implements ActionControlPanelListener {
     }
 
     /**
-     * 对外状态
-     * @return
+     * 对外事件
+     * @return  code码
      */
     public static int getTRTCMode(){
        return TRTCMode;
+    }
+
+    /**
+     * 重置
+     */
+    public static void onTRTCReset(){
+        TRTCMode=0;
     }
 
 
