@@ -11,6 +11,7 @@ import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
 import alitrtcflutte.sophon.rtc.RTCActionCallInfo;
 import alitrtcflutte.sophon.utils.StringUtil;
+import alitrtcflutte.sophon.utils.alivcVideoCallWithdraw;
 
 
 public class VideoCallActivity extends AppCompatActivity implements View.OnClickListener {
@@ -57,6 +58,7 @@ public class VideoCallActivity extends AppCompatActivity implements View.OnClick
         if (alivcVideoCallView != null) {
             alivcVideoCallView.leave();
         }
+        alivcVideoCallWithdraw.leave();
         aliTrTcAction.callWithdraw();
         super.onDestroy();
     }

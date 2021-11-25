@@ -58,10 +58,7 @@ public  class AliTrTcAction implements ActionControlPanelListener {
 
     @Override
     public void onWithdraw() {
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("code", 1001);
-        Intent lIntent = new Intent("android.to.flutter");
-        myContext.sendBroadcast(lIntent);
+
     }
 
 }
