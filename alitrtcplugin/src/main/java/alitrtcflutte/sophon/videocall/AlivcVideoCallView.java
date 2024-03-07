@@ -6,13 +6,16 @@ import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackBoth;
 import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackCamera;
 import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackNo;
 import static com.alivc.rtc.AliRtcEngine.AliRtcVideoTrack.AliRtcVideoTrackScreen;
+
 import static alitrtcflutte.sophon.utils.ThreadUtils.runOnUiThread;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PixelFormat;
+import android.opengl.Visibility;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -21,6 +24,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -42,6 +46,7 @@ import alitrtcflutte.AliTrTcAction;
 import alitrtcflutte.sophon.R;
 import alitrtcflutte.sophon.bean.ChartUserBean;
 import alitrtcflutte.sophon.bean.RTCAuthInfo;
+import alitrtcflutte.sophon.listener.ActionControlPanelListener;
 import alitrtcflutte.sophon.rtc.RTCActionCallInfo;
 import alitrtcflutte.sophon.rtc.RTCBeaconTowerCallback;
 import alitrtcflutte.sophon.rtc.RTCBeaconTowerImpl;
@@ -263,9 +268,13 @@ public  class AlivcVideoCallView extends FrameLayout implements RTCBeaconTowerCa
                 IMAGE_BUTTON_IS_SHOW_FLAG = !IMAGE_BUTTON_IS_SHOW_FLAG;
             }
         });
+        /**
+         * 摄像头
+         */
         alivcControlView.setOnControlPanelListener(new AlivcControlView.OnControlPanelListener() {
             @Override
             public void onCameraPreview(boolean bool) {
+                RTCBeaconTowerImpl.sharedInstance().muteLocalCamera(bool);
 //                if (bool) {
 //                    RTCBeaconTowerImpl.sharedInstance().configLocalCameraPublish(false);
 //                    ToastUtils.showShort(getResources().getString(R.string.aliyun_tips_mutelocal_camera_off));

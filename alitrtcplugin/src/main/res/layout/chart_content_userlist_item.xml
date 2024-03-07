@@ -2,19 +2,23 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    >
 
 
     <LinearLayout
         android:id="@+id/chart_content_userlist_item_video_layout"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <FrameLayout
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:background="@drawable/chart_userlist_item_video_layout_bg">
+            android:background="@drawable/chart_userlist_item_video_layout_bg"
+            android:visibility="gone"
+            >
 
             <View
                 android:layout_width="match_parent"
@@ -75,5 +79,7 @@
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@color/alivc_common_white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="gone"
+        />
 </FrameLayout>
